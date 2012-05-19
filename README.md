@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install trouter_client
+    $ gem install troutr_client
 
 ## Usage
 
