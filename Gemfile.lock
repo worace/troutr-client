@@ -1,0 +1,18 @@
+PATH
+  remote: .
+  specs:
+    troutr_client (0.0.1)
+      faraday
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    faraday (0.8.0)
+      multipart-post (~> 1.1)
+    multipart-post (1.1.5)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  troutr_client!
