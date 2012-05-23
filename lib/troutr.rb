@@ -85,6 +85,19 @@ module Troutr
       [resp.status, resp.body]
     end
 
+    def create_instagram_item(display_name, upload_json)
+      instagram_hash = JSON.parse(upload_json)
+      body_json = JSON.dump({type: "InstagramItem", image: instagram_hash})
+
+      resp = @conn.post do |req|
+        req.url "/feeds/#{display_name}/items.json"
+        req.params['token'] = @token
+        req.params['body'] = body_json
+        req.headers['Content-Type'] = 'application/json'
+      end
+      [resp.status, resp.body]
+    end
+
     def retrout_item(display_name, item_id)
       resp = @conn.post do |req|
         req.url "/feeds/#{display_name}/stream_items/#{item_id}/refeeds.json"
