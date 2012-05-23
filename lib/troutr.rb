@@ -76,7 +76,7 @@ module Troutr
     end
 
     def create_twitter_item(display_name, tweet_json)
-      tweet_hash = JSON.parse(tweet_hash)
+      tweet_hash = JSON.parse(tweet_json)
       body_json = JSON.dump({type: "TwitterItem", tweet: tweet_hash})
       resp = @conn.post do |req|
         req.url "/feeds/#{display_name}/items.json"
