@@ -98,6 +98,16 @@ module Troutr
       [resp.status, resp.body]
     end
 
+    def user_recent_stream_items(display_name, last_stream_item_id)
+      resp = @conn.get do |req|
+        req.url "/feeds/#{display_name}/since/#{last_stream_item_id}.json"
+        req.params['token'] = @token
+        req.headers['Content-Type'] = 'application/json'
+      end
+      [resp.status, resp.body]
+
+    end
+
     def retrout_item(display_name, item_id)
       resp = @conn.post do |req|
         req.url "/feeds/#{display_name}/stream_items/#{item_id}/refeeds.json"
