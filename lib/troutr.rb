@@ -1,8 +1,6 @@
 require "faraday"
 require "json"
 
-# worace token: BqTyLCMX7Ystx7kAPNCw
-# TOKEN FOR 'chefpierre': uYonfoXSLiphAzr2Gxqv
 module Troutr
   class Client
     def initialize(options={})
