@@ -6,7 +6,7 @@ require "json"
 module Troutr
   class Client
     def initialize(options={})
-      @conn = Faraday.new(:url => "http://api.lvh.me:3000")
+      @conn = Faraday.new(:url => "http://api.polutropos.com")
 
       if token = options[:token]
         @token = token
