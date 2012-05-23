@@ -63,10 +63,12 @@ module Troutr
     end
 
     def create_github_item(display_name, event_json)
+      event_hash = JSON.parse(event_json)
+      body_json = JSON.dump({type: "GithubItem", event: event_hash})
       resp = @conn.post do |req|
         req.url "/feeds/#{display_name}/items.json"
         req.params['token'] = @token
-        req.params['body'] = event_json
+        req.params['body'] = body_json
         req.headers['Content-Type'] = 'application/json'
       end
       [resp.status, resp.body]
