@@ -75,6 +75,18 @@ module Troutr
       [resp.status, resp.body]
     end
 
+    def create_twitter_item(display_name, tweet_json)
+      tweet_hash = JSON.parse(tweet_hash)
+      body_json = JSON.dump({type: "TwitterItem", tweet: tweet_hash})
+      resp = @conn.post do |req|
+        req.url "/feeds/#{display_name}/items.json"
+        req.params['token'] = @token
+        req.params['body'] = body_json
+        req.headers['Content-Type'] = 'application/json'
+      end
+      [resp.status, resp.body]
+    end
+
     def retrout_item(display_name, item_id)
       resp = @conn.post do |req|
         req.url "/feeds/#{display_name}/stream_items/#{item_id}/refeeds.json"
