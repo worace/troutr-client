@@ -6,7 +6,7 @@ require "json"
 module Troutr
   class Client
     def initialize(options={})
-      @conn = Faraday.new(:url => "http://api.polutropos.com")
+      @conn = Faraday.new(:url => "http://api.lvh.me:3000")
 
       if token = options[:token]
         @token = token
@@ -57,6 +57,16 @@ module Troutr
         req.url "/feeds/#{display_name}/items.json"
         req.params['token'] = @token
         req.params['body'] = JSON.dump(attr_hash)
+        req.headers['Content-Type'] = 'application/json'
+      end
+      [resp.status, resp.body]
+    end
+
+    def create_github_item(display_name, event_json)
+      resp = @conn.post do |req|
+        req.url "/feeds/#{display_name}/items.json"
+        req.params['token'] = @token
+        req.params['body'] = event_json
         req.headers['Content-Type'] = 'application/json'
       end
       [resp.status, resp.body]
