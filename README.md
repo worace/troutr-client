@@ -1,4 +1,4 @@
-# SimpleFeed::Client
+# Angler: A Troutr Client
 
 A simple client for interacting with the Troutr API.
 
